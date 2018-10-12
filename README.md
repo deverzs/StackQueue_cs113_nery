@@ -1,7 +1,7 @@
 # CS113-HW06-StackQueue
 ## HW #6 for CS113 - Stack + Queue Implementation, Solving Palindrome using Stacks
 
-**[//Insert Build Status Image//]**
+**[[![Build Status](https://travis-ci.com/MiraCostaCS-Nery/cs113-hw6-stackqueue-deverzs.svg?token=ZAzHRsZG2pX38hWavrqj&branch=master)](https://travis-ci.com/MiraCostaCS-Nery/cs113-hw6-stackqueue-deverzs)]**
 
 > **"I will, in fact, claim that the difference between a bad programmer and a good one is whether [they] consider [their] code or [their] data structures more important. Bad programmers worry about the code. Good programmers worry about data structures and their relationships."**
 > — Linus Torvalds [recent news on Linus Torvalds](https://www.newyorker.com/science/elements/after-years-of-abusive-e-mails-the-creator-of-linux-steps-aside)
