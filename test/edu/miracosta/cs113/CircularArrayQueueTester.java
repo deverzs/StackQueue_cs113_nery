@@ -1,6 +1,7 @@
 package edu.miracosta.cs113;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -114,6 +115,7 @@ public class CircularArrayQueueTester {
         populateQueue(INITIAL_CAPACITY, false);
         try {
             circularQueue.add(STRING_VALUES[INITIAL_CAPACITY]);
+            System.out.println("trying to add to full");
             fail("Test add failed - Attempt to add to full queue without reallocation prompts IllegalStateException.");
         } catch (IllegalStateException ise) { /* Test Success */ }
     }
@@ -173,6 +175,8 @@ public class CircularArrayQueueTester {
 
         circularQueue.add(STRING_VALUES[1]);
         assertEquals("Test remove failed - Call should return the head of the queue.", STRING_VALUES[1], circularQueue.remove());
+
+
     }
 
     @Test

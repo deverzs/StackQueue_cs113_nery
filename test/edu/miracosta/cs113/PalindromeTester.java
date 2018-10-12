@@ -39,13 +39,94 @@ public class PalindromeTester {
      *
      * @param s a string comprised of any character
      * @return returns true if a palindrome (ignoring whitespace and case sensitivity), false otherwise
+     * @author Zsuzsanna Dianovcis
      */
     private boolean isPalindrome(String s) {
-
-        // TODO: Implement this method body using your ArrayListStack. Be mindful of your algorithm!
-        return false;
+        // checking if null
+        if (s == null) {
+            throw new IllegalArgumentException() ;
+        }
+        // check if single string
+        if (s.length() == 0 || s.length() == 1) {
+               return true ;
+        }
+        // if only 2 characters, check if they are the same
+        if (s.length() == 2) {
+            if (s.charAt(0) == s.charAt(1)) {
+                return true ;
+            }
+            else {
+                return false ;
+            }
+        }
+        boolean result = true ;
+        Character newChar ;
+        ArrayListStack<Character> original  ;
+        ArrayListStack<Character> compareTo = new ArrayListStack<Character>() ;
+        original = stringToStack(s) ;
+        int newString = cleanString(s).length() ;
+        int half = newString /2 ;
+        for (int i = 0 ; i < half ; i++){
+            newChar = original.pop() ;
+            compareTo.push(newChar) ;
+        }
+        // check if string is even or odd
+        if (newString % 2 == 1) {
+            original.pop() ; // pop off an extra, if odd
+        }
+        Character comp1 ;
+        Character comp2 ;
+        // now the stacks should be the same
+        for (int i = 0 ; i < half; i++) {
+            comp1 = original.pop() ;
+            comp2 = compareTo.pop() ;
+            if (!(comp1==comp2)) {
+                result = false ;
+            }
+        }
+        return result ;
 
     } // End of method isPalindrome
+
+
+    // Palindrome Helper Methods
+
+    /**
+     * This is a helper method to isPalindrome(). It returns a stack of the strings
+     * @param s An incoming string to be parsed into a stack
+     * @return the stack that the string is parsed into
+     * @author Zsuzsanna Dianovics
+     */
+    public static ArrayListStack stringToStack(String s) {
+        ArrayListStack<Character> stack = new ArrayListStack<>() ;
+        Character newChar ;
+        s = cleanString(s);
+        int stringSize = s.length() ;
+        for (int i = 1; i < (stringSize); i++) {
+            newChar = s.charAt(0) ;
+            stack.push(newChar) ;
+            s =s.substring(1) ;
+        }
+        newChar = s.charAt(0) ;
+        stack.push(newChar);
+        return stack ;
+    }
+
+    /**
+     * This is a helper method to the stringToStack() which cleans a string of whitespace and converted
+     * to lower case
+     * @param s  The string to be cleaned
+     * @return  The cleaned string
+     * @author Zsuzsanna Dianovics
+     */
+    public static String cleanString(String s) {
+        s = s.toLowerCase() ;
+        s = s.replaceAll("\\s", "") ;
+        return s ;
+
+    }
+
+
 
     // region isPalindrome tests =======================================================================================
 

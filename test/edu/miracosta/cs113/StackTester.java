@@ -77,6 +77,7 @@ public class StackTester {
     public void testPopMany() {
         // Push 13 integers, 50 through 63, onto the stack
         for (int i = 50; i <= 63; i ++) {
+
             stack.push(i);
         }
 
