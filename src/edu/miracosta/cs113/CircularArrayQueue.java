@@ -2,12 +2,16 @@ package edu.miracosta.cs113;
 
 import java.util.*;
 
+/**
+ * This is a circular queue data structure, utilizing an underlying ArrayList. Elements can only be added to the rear
+ * and exit the front.
+ * @param <E>  Generic data type of the queue
+ */
 public class CircularArrayQueue<E> implements Queue<E> {
    private int front ;
    private int rear ; // last index
    private int size ;
    private int capacity ;
-   private static final int DEFAULT_CAPACITY = 10 ;
    private E[] theData ;
 
 
@@ -53,19 +57,56 @@ public class CircularArrayQueue<E> implements Queue<E> {
 
     @Override
     public Iterator iterator() {
+        return new Iterator() {
 
+            int index = front ;
 
-        return null;
+            @Override
+            public boolean hasNext() {
+                if (index < size) {
+                    return true ;
+                }
+                else {
+                    return false ;
+                }
+            }
+
+            @Override
+            public Object next() {
+                if (index == size ) {
+                    throw new NoSuchElementException() ;
+                }
+                else {
+                    System.out.println("In iterator " + theData[index]);
+                    return theData[index++] ;
+                }
+            }
+
+            @Override
+            /**
+             * @throw UnsupportedOperationException ;
+             *
+             */
+            public void remove() {
+                throw new UnsupportedOperationException() ;
+            }
+        };
     }
 
     @Override
+    /**
+     * @throw UnsupportedOperationException ;
+     */
     public Object[] toArray() {
-        return new Object[0];
+        throw new UnsupportedOperationException() ;
     }
 
     @Override
+    /**
+     * @throw UnsupportedOperationException ;
+     */
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+        throw new UnsupportedOperationException() ;
     }
 
     @Override
@@ -74,12 +115,6 @@ public class CircularArrayQueue<E> implements Queue<E> {
             throw new IllegalStateException() ;
         }
         return offer(o) ;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        remove(o) ;
-        return true;
     }
 
     @Override
@@ -146,7 +181,12 @@ public class CircularArrayQueue<E> implements Queue<E> {
         front = (front + 1) % capacity ;
         size-- ;
         return result;
+    }
 
+    @Override
+    public boolean remove(Object o) {
+        return false ; // this is a queue, it shouldn't
+                       // be able to remove from anywhere but the front
     }
 
     @Override
@@ -177,5 +217,15 @@ public class CircularArrayQueue<E> implements Queue<E> {
         E result = theData[front] ;
         return result;
 
+    }
+
+    @Override
+    public String toString() {
+       String result = "[Top of queue - EXIT] " ;
+       for (int i = front ; i < rear + 1 ; i++) {
+           result += theData[i] + "<-" ;
+       }
+       result += " [Bottom of queue - ENTER]" ;
+       return result ;
     }
 }

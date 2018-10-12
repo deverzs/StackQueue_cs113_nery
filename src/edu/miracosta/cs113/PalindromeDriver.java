@@ -1,26 +1,50 @@
 package edu.miracosta.cs113;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 public class PalindromeDriver {
 
     public static void main (String args[]) {
         System.out.println("Hello");
+
+        CircularArrayQueue<String> q = new CircularArrayQueue<String>(5) ;
+        q.add("A") ;
+        q.add("B") ;
+        q.add("C") ;
+        q.add("D") ;
+        System.out.println(q.toString()) ;
+
+        Iterator<String> mover = q.iterator() ;
+        mover.next() ;
+        mover.next() ;
+        System.out.println(mover.hasNext());
+        mover.next() ;
+        System.out.println(mover.hasNext());
+        mover.next() ;
+        System.out.println("MOver next? " + mover.hasNext());
+       // mover.next() ;
+        System.out.println(q.remove("C")) ;
+        System.out.println(q.toString()) ;
         ArrayListStack stack = new ArrayListStack() ;
         String test = "hot" ;
         ArrayListStack<String> tester = new ArrayListStack<String>() ;
-/*        tester.push("A") ;
+        tester.push("A") ;
         tester.push("B") ;
         tester.push("C") ;
+        System.out.println("To string tester stack: " + tester.toString());
 
         System.out.println("Popping: " + tester.pop());
         System.out.println("Popping: " + tester.pop());
         System.out.println("Popping: " + tester.pop());
 
-*/
+
 
         System.out.println("Is " + test + " a palindrome? " + isPalindrome(test)) ;
     }
+
+
+
 
     private static boolean isPalindrome(String s) {
 
